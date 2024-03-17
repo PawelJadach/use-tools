@@ -4,6 +4,8 @@ import { Cards } from "@/ui/Cards";
 import { Spotlight } from "@/ui/Spotlight";
 import { cn } from "@/utils/cn";
 
+export const revalidate = 10;
+
 export default async function Home() {
 	const categories = await getCategories();
 	return (

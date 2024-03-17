@@ -1,11 +1,13 @@
+import { getTools } from "@/services/categories.service";
 import { cn } from "@/utils/cn";
-import { ReactNode } from "react";
 
 type CategoryProps = {
 	params: {
 		category: string;
 	};
 };
+
+export const dynamic = "force-dynamic";
 
 export default async function Category({ params }: CategoryProps) {
 	return (

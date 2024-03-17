@@ -31,3 +31,8 @@ export const getCategories = async () => {
 
 	return mapCategories(data.records);
 };
+
+export const getTools = async (categoryName: string) => {
+	const { data } = await client.get<CategoriesResponse>("/tools");
+	console.log(data);
+};
