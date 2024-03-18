@@ -3,10 +3,11 @@ import { getCategories } from "@/services/categories.service";
 import { Cards } from "@/ui/Cards";
 import { Spotlight } from "@/ui/Spotlight";
 import { cn } from "@/utils/cn";
-
-export const revalidate = 10;
+import { unstable_noStore as noStore } from "next/cache";
 
 export default async function Home() {
+	noStore();
+
 	const categories = await getCategories();
 	return (
 		<>
