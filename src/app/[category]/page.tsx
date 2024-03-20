@@ -1,6 +1,7 @@
 import { getTools } from "@/services/categories.service";
 import { ToolCardsContainer } from "@/ui/Cards";
 import { cn } from "@/utils/cn";
+import { unstable_noStore as noStore } from "next/cache";
 
 type CategoryProps = {
 	params: {
@@ -9,6 +10,7 @@ type CategoryProps = {
 };
 
 export default async function Category({ params }: CategoryProps) {
+	noStore();
 	const tools = await getTools(params.category);
 
 	return (
