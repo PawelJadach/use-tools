@@ -72,12 +72,11 @@ export const CardImage = ({ className, src }: { className?: string; src: string 
 	);
 };
 
-export const ToolCard = ({ title, description, href, image }: { title: string; description: string; href: string; image: string }) => {
+export const ToolCard = ({ title, description, href }: { title: string; description: string; href: string; }) => {
 	return (
 		<a href={href} target="_blank" rel="noreferrer">
 			<Card className="p-2">
 				<div className="flex gap-4">
-					<CardImage src={image} />
 					<div>
 						<CardTitle className="mt-1">{title}</CardTitle>
 						<CardDescription className="mt-1">{description}</CardDescription>
@@ -96,7 +95,6 @@ export const ToolCardsContainer = ({
 		title: string;
 		description: string;
 		href: string;
-		image: string;
 	}[];
 	className?: string;
 }) => {
@@ -123,7 +121,7 @@ export const ToolCardsContainer = ({
 							/>
 						)}
 					</AnimatePresence>
-					<ToolCard href={item.href} image={item.image} title={item.title} description={item.description} />
+					<ToolCard href={item.href} title={item.title} description={item.description} />
 				</div>
 			))}
 		</div>
