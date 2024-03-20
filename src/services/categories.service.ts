@@ -1,38 +1,30 @@
-import { client } from "@/lib/client";
-
-type Category = {
-	name: string;
-	description: string;
-	slug: string;
-};
-
-type MappedCategory = {
-	title: string;
-	description: string;
-	link: string;
-};
-
-type CategoriesResponse = {
-	records: {
-		fields: Category;
-	}[];
-};
-
-const mapCategories = (categories: CategoriesResponse["records"]): MappedCategory[] => {
-	return categories.map(({ fields }) => ({
-		title: fields.name,
-		description: fields.description,
-		link: `/${fields.slug}`,
-	}));
-};
+import { connectMongo } from "@/lib/dbConnection";
+import Category from "@/models/Category";
+import CategoryModel from "@/models/Category";
+import Tool from "@/models/Tool";
 
 export const getCategories = async () => {
-	const { data } = await client.get<CategoriesResponse>("/categories");
+	try {
+		connectMongo();
 
-	return mapCategories(data.records);
+		const allCategories = await CategoryModel.find({}, { title: 1, description: 1, slug: 1, _id: 0 }).exec();
+
+		return JSON.parse(JSON.stringify(allCategories));
+	} catch (error) {
+		console.error(error);
+		return [];
+	}
 };
 
-export const getTools = async (categoryName: string) => {
-	const { data } = await client.get<CategoriesResponse>("/tools");
-	console.log(data);
+export const getTools = async (slug: string) => {
+	try {
+		connectMongo();
+		const category = await Category.findOne({ slug });
+		const tools = await Tool.find({ category: category._id }, { title: 1, description: 1, href: 1, image: 1, _id: 0 }).exec();
+
+		return JSON.parse(JSON.stringify(tools));
+	} catch (error) {
+		console.error(error);
+		return [];
+	}
 };

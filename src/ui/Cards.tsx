@@ -12,8 +12,7 @@ export const Cards = ({
 }: {
 	items: {
 		title: string;
-		description: string;
-		link: string;
+		slug: string;
 	}[];
 	className?: string;
 }) => {
@@ -22,7 +21,7 @@ export const Cards = ({
 	return (
 		<div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-5", className)}>
 			{items.map((item, idx) => (
-				<Link href={item?.link} key={item?.link} className="relative group  block p-2 h-full w-full" onMouseEnter={() => setHoveredIndex(idx)} onMouseLeave={() => setHoveredIndex(null)}>
+				<Link href={"/" + item.slug} key={"/" + item.slug} className="relative group  block p-2 h-full w-full" onMouseEnter={() => setHoveredIndex(idx)} onMouseLeave={() => setHoveredIndex(null)}>
 					<AnimatePresence>
 						{hoveredIndex === idx && (
 							<motion.span
@@ -41,8 +40,7 @@ export const Cards = ({
 						)}
 					</AnimatePresence>
 					<Card>
-						<CardTitle>{item.title}</CardTitle>
-						<CardDescription>{item.description}</CardDescription>
+						<CardTitle className="text-center">{item.title}</CardTitle>
 					</Card>
 				</Link>
 			))}
@@ -69,7 +67,7 @@ export const CardDescription = ({ className, children }: { className?: string; c
 export const CardImage = ({ className, src }: { className?: string; src: string }) => {
 	return (
 		<div className="w-10 h-10 flex justify-center items-center">
-			<Image width={30} height={30} alt="Test alt" src={src} className={cn(className)} />
+			<Image width={30} height={30} alt="Test alt" src={"/logos/" + src} className={cn(className)} />
 		</div>
 	);
 };
