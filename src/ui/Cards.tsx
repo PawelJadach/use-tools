@@ -67,7 +67,7 @@ export const CardDescription = ({ className, children }: { className?: string; c
 export const CardImage = ({ className, src }: { className?: string; src: string }) => {
 	return (
 		<div className="w-10 h-10 flex justify-center items-center">
-			<Image width={30} height={30} alt="Test alt" src={"/logos/" + src} className={cn(className)} />
+			{!!src ? <Image width={30} height={30} alt="Test alt" src={"/logos/" + src} className={cn(className)} /> : null}
 		</div>
 	);
 };
