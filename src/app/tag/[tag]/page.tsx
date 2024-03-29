@@ -28,7 +28,6 @@ const getToolsByTag = cache(async (tag: string) => {
 });
 
 export default async function Tag({ params }: TagProps) {
-	noStore();
 	const tools = await getToolsByTag(params.tag);
 
 	return (

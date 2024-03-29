@@ -28,7 +28,6 @@ const getToolsByCategory = cache(async (category: string) => {
 });
 
 export default async function Category({ params }: CategoryProps) {
-	noStore();
 	const tools = await getToolsByCategory(params.category);
 
 	return (

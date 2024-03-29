@@ -32,8 +32,6 @@ const getTags = cache(async () => {
 });
 
 export default async function Home() {
-	noStore();
-
 	const categories = await getCategories();
 	const tags = await getTags();
 	return (
