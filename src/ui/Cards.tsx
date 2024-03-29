@@ -77,9 +77,10 @@ export const CardImage = ({ className, src }: { className?: string; src: string 
 
 export const ToolCard = ({ item }: { item: Tools[number] }) => {
 	const iconSrc = item?.icon && item?.icon.length > 0 ? item?.icon[0].url : "";
+	const urlWithRef = `${item?.website}/?ref=use-tools`;
 
 	return (
-		<a href={item?.website as string} target="_blank" rel="noreferrer" className="cursor-pointer">
+		<a href={urlWithRef} target="_blank" rel="noreferrer" className="cursor-pointer">
 			<Card className="p-2">
 				<div className="flex gap-4">
 					<CardImage src={iconSrc} />

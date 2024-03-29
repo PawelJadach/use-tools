@@ -3,7 +3,6 @@ import { getClient } from "@/lib/apollo";
 import { getCategoriesQuery } from "@/queries/categories";
 import { getTagsQuery } from "@/queries/tags";
 import ChipTabs from "@/ui/ChipTabs";
-import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 

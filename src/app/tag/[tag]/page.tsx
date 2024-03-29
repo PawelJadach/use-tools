@@ -2,7 +2,6 @@ import { getClient } from "@/lib/apollo";
 import { getTagToolsQuery } from "@/queries/tags";
 import { ToolCardsContainer } from "@/ui/Cards";
 import { cn } from "@/utils/cn";
-import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 
