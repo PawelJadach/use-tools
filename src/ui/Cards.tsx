@@ -1,27 +1,30 @@
 "use client";
 import { gradientClassName } from "@/config/constants";
+import { Categories, Tools } from "@/queries/categories";
 import { cn } from "@/utils/cn";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-export const Cards = ({
-	items,
-	className,
-}: {
-	items: {
-		title: string;
-		slug: string;
-	}[];
-	className?: string;
-}) => {
+export const Cards = ({ items, className, type }: { items: Categories; className?: string; type: string }) => {
 	let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+	const getUrlByType = (type: string) => {
+		switch (type) {
+			case "Categories":
+				return "/category/";
+			case "Tags":
+				return "/tag/";
+			default:
+				return "/";
+		}
+	};
 
 	return (
 		<div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-5", className)}>
 			{items.map((item, idx) => (
-				<Link href={"/" + item.slug} key={"/" + item.slug} className="relative group  block p-2 h-full w-full" onMouseEnter={() => setHoveredIndex(idx)} onMouseLeave={() => setHoveredIndex(null)}>
+				<Link href={`${getUrlByType(type)}${item?.slug}`} key={"/" + item?.slug} className="relative group  block p-2 h-full w-full" onMouseEnter={() => setHoveredIndex(idx)} onMouseLeave={() => setHoveredIndex(null)}>
 					<AnimatePresence>
 						{hoveredIndex === idx && (
 							<motion.span
@@ -40,7 +43,7 @@ export const Cards = ({
 						)}
 					</AnimatePresence>
 					<Card>
-						<CardTitle className="text-center">{item.title}</CardTitle>
+						<CardTitle className="text-center">{item?.name}</CardTitle>
 					</Card>
 				</Link>
 			))}
@@ -66,20 +69,23 @@ export const CardDescription = ({ className, children }: { className?: string; c
 
 export const CardImage = ({ className, src }: { className?: string; src: string }) => {
 	return (
-		<div className="w-10 h-10 flex justify-center items-center">
-			{!!src ? <Image width={30} height={30} alt="Test alt" src={"/logos/" + src} className={cn(className)} /> : null}
+		<div className="w-15 h-15 flex justify-center items-center p-5  rounded-sm relative">
+			<Image layout="fill" objectFit="contain" alt="Test alt" src={src} className={cn(className)} />
 		</div>
 	);
 };
 
-export const ToolCard = ({ title, description, href }: { title: string; description: string; href: string; }) => {
+export const ToolCard = ({ item }: { item: Tools[number] }) => {
+	const iconSrc = item?.icon && item?.icon.length > 0 ? item?.icon[0].url : "";
+
 	return (
-		<a href={href} target="_blank" rel="noreferrer">
+		<a href={item?.website as string} target="_blank" rel="noreferrer" className="cursor-pointer">
 			<Card className="p-2">
 				<div className="flex gap-4">
+					<CardImage src={iconSrc} />
 					<div>
-						<CardTitle className="mt-1">{title}</CardTitle>
-						<CardDescription className="mt-1">{description}</CardDescription>
+						<CardTitle className="mt-1">{item?.name}</CardTitle>
+						<CardDescription className="mt-1">{item?.description}</CardDescription>
 					</div>
 				</div>
 			</Card>
@@ -87,23 +93,13 @@ export const ToolCard = ({ title, description, href }: { title: string; descript
 	);
 };
 
-export const ToolCardsContainer = ({
-	items,
-	className,
-}: {
-	items: {
-		title: string;
-		description: string;
-		href: string;
-	}[];
-	className?: string;
-}) => {
+export const ToolCardsContainer = ({ items, className }: { items: NonNullable<Tools>; className?: string }) => {
 	let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
 	return (
 		<div className={cn("flex flex-col py-5", className)}>
 			{items.map((item, idx) => (
-				<div key={item.href + idx} className="relative group  block p-2 h-full w-full" onMouseEnter={() => setHoveredIndex(idx)} onMouseLeave={() => setHoveredIndex(null)}>
+				<div key={idx} className="relative group  block p-2 h-full w-full" onMouseEnter={() => setHoveredIndex(idx)} onMouseLeave={() => setHoveredIndex(null)}>
 					<AnimatePresence>
 						{hoveredIndex === idx && (
 							<motion.span
@@ -121,7 +117,7 @@ export const ToolCardsContainer = ({
 							/>
 						)}
 					</AnimatePresence>
-					<ToolCard href={item.href} title={item.title} description={item.description} />
+					<ToolCard item={item} />
 				</div>
 			))}
 		</div>
