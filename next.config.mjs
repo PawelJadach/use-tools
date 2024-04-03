@@ -3,8 +3,7 @@ const nextConfig = {
 	images: {
 		remotePatterns: [
 			{
-				protocol: "https",
-				hostname: "v5.airtableusercontent.com",
+				domains: "v5.airtableusercontent.com",
 			},
 		],
 	},
