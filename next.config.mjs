@@ -1,11 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
-		remotePatterns: [
-			{
-				domains: "v5.airtableusercontent.com",
-			},
-		],
+		domains: ["v5.airtableusercontent.com"],
 	},
 
 	headers: async () => {
