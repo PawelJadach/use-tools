@@ -1,6 +1,7 @@
 import { getClient } from "@/lib/apollo";
 import { getTagToolsQuery } from "@/queries/tags";
 import { ToolCardsContainer } from "@/ui/Cards";
+import Header from "@/ui/Header";
 import { cn } from "@/utils/cn";
 import { notFound } from "next/navigation";
 import { cache } from "react";
@@ -30,11 +31,9 @@ export default async function Tag({ params }: TagProps) {
 	const tools = await getToolsByTag(params.tag);
 
 	return (
-		<>
-			<div className="max-w-5xl mx-auto px-8 mt-10 gap-4">
-				<h2 className={cn(`text-2xl font-bold md:text-3xl bg-clip-text text-transparent text-emerald-500 mb-8`)}>{params.tag}.</h2>
-				{tools.length > 0 ? <ToolCardsContainer items={tools} /> : <p>Tools not found</p>}
-			</div>
-		</>
+		<div className="w-full max-w-5xl mx-auto gap-4 grow">
+			<Header>{params.tag}.</Header>
+			{tools.length > 0 ? <ToolCardsContainer items={tools} /> : <p>Tools not found</p>}
+		</div>
 	);
 }

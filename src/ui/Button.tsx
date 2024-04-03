@@ -2,22 +2,25 @@
 import Link from "next/link";
 import React, { ReactNode } from "react";
 import { motion } from "framer-motion";
+import { cn } from "@/utils/cn";
 
 type ButtonProps = {
 	href?: string;
 	onClick?: () => void;
 	children: ReactNode;
+	isActive?: boolean;
+	filled?: boolean;
 };
 
-export const Button = ({ href, children, onClick }: ButtonProps) => {
-	const className = "px-4 py-2 backdrop-blur-sm border bg-emerald-300/10 border-emerald-500/20 text-white text-center rounded-full relative";
-	const Background = () => <div className="absolute inset-x-0  h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-emerald-500 to-transparent" />;
+export const Button = ({ href, children, onClick, isActive = false, filled = false }: ButtonProps) => {
+	const className = `text-slate-300 hover:text-slate-200 hover:bg-gradient-to-b hover:from-emerald-500 hover:to-emerald-800 hover:bg-opacity-50 text-md transition-colors px-2.5 py-0.5 rounded-md relative`;
+
+	const activeClassName = isActive || filled ? "text-slate-200 bg-gradient-to-b from-emerald-500 to-emerald-800 bg-opacity-50" : "";
 
 	const renderButton = () => {
 		return (
-			<motion.button whileHover={{ scale: 1.04, transition: { duration: 0.2 } }} className={className} onClick={onClick}>
+			<motion.button whileHover={{ scale: 1.04, transition: { duration: 0.2 } }} className={cn(className, activeClassName)} onClick={onClick}>
 				{children}
-				<Background />
 			</motion.button>
 		);
 	};
@@ -25,9 +28,8 @@ export const Button = ({ href, children, onClick }: ButtonProps) => {
 	const renderLink = (href: string) => {
 		return (
 			<Link href={href}>
-				<motion.div whileHover={{ scale: 1.04, transition: { duration: 0.2 } }} className={className} onClick={onClick && onClick}>
+				<motion.div whileHover={{ scale: 1.04, transition: { duration: 0.2 } }} className={cn(className, activeClassName)} onClick={onClick && onClick}>
 					{children}
-					<Background />
 				</motion.div>
 			</Link>
 		);

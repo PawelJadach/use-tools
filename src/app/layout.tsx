@@ -5,6 +5,7 @@ import Navbar from "@/ui/Navbar";
 import Footer from "@/ui/Footer";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { cn } from "@/utils/cn";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +27,7 @@ export default function RootLayout({
 				<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 				<link rel="manifest" href="/site.webmanifest" />
 			</head>
-			<body className={inter.className}>
+			<body className={cn(inter.className, "min-h-screen flex flex-col justify-between items-stretch")}>
 				<Navbar />
 				{children}
 				<Footer />

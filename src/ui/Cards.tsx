@@ -5,10 +5,16 @@ import { cn } from "@/utils/cn";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import FilterInput from "./FilterInput";
 
 export const Cards = ({ items, className, type }: { items: Categories; className?: string; type: string }) => {
-	let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+	const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+	const [search, setSearch] = useState("");
+
+	useEffect(() => {
+		return () => setSearch("");
+	}, [type]);
 
 	const getUrlByType = (type: string) => {
 		switch (type) {
@@ -21,33 +27,45 @@ export const Cards = ({ items, className, type }: { items: Categories; className
 		}
 	};
 
+	const filteredItems = items.filter((item) => item?.name?.toLowerCase().includes(search.toLowerCase()) || item?.slug?.toLowerCase().includes(search.toLowerCase()));
+
 	return (
-		<div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-5", className)}>
-			{items.map((item, idx) => (
-				<Link href={`${getUrlByType(type)}${item?.slug}`} key={"/" + item?.slug} className="relative group  block p-2 h-full w-full" onMouseEnter={() => setHoveredIndex(idx)} onMouseLeave={() => setHoveredIndex(null)}>
-					<AnimatePresence>
-						{hoveredIndex === idx && (
-							<motion.span
-								className={cn("absolute inset-0 h-full w-full block rounded-3xl", gradientClassName)}
-								layoutId="hoverBackground"
-								initial={{ opacity: 0 }}
-								animate={{
-									opacity: 1,
-									transition: { duration: 0.15 },
-								}}
-								exit={{
-									opacity: 0,
-									transition: { duration: 0.15, delay: 0.2 },
-								}}
-							/>
-						)}
-					</AnimatePresence>
-					<Card>
-						<CardTitle className="text-center">{item?.name}</CardTitle>
-					</Card>
-				</Link>
-			))}
-		</div>
+		<>
+			<FilterInput type={type} value={search} onChange={(e) => setSearch(e.target.value)} />
+			{filteredItems.length > 0 ? (
+				<div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-5", className)}>
+					{filteredItems.map((item, idx) => (
+						<Link href={`${getUrlByType(type)}${item?.slug}`} key={"/" + item?.slug} className="relative group  block p-2 h-full w-full" onMouseEnter={() => setHoveredIndex(idx)} onMouseLeave={() => setHoveredIndex(null)}>
+							<AnimatePresence>
+								{hoveredIndex === idx && (
+									<motion.span
+										className={cn("absolute inset-0 h-full w-full block rounded-3xl", gradientClassName)}
+										layoutId="hoverBackground"
+										initial={{ opacity: 0 }}
+										animate={{
+											opacity: 1,
+											transition: { duration: 0.15 },
+										}}
+										exit={{
+											opacity: 0,
+											transition: { duration: 0.15, delay: 0.2 },
+										}}
+									/>
+								)}
+							</AnimatePresence>
+							<Card>
+								<CardTitle className="text-center">{item?.name}</CardTitle>
+							</Card>
+						</Link>
+					))}
+				</div>
+			) : (
+				<div className="flex flex-col justify-center items-center mt-24">
+					<Image className="mb-10" src="/not-found.svg" width={300} height={200} alt="Not found" />
+					<p>No results, try something else...</p>
+				</div>
+			)}
+		</>
 	);
 };
 
@@ -82,10 +100,12 @@ export const ToolCard = ({ item }: { item: Tools[number] }) => {
 	return (
 		<a href={urlWithRef} target="_blank" rel="noreferrer" className="cursor-pointer">
 			<Card className="p-2">
-				<div className="flex gap-4">
-					<CardImage src={iconSrc} />
-					<div>
+				<div className="flex flex-col gap-4">
+					<div className="flex items-center gap-4">
+						<CardImage src={iconSrc} />
 						<CardTitle className="mt-1">{item?.name}</CardTitle>
+					</div>
+					<div>
 						<CardDescription className="mt-1">{item?.description}</CardDescription>
 					</div>
 				</div>
@@ -98,7 +118,7 @@ export const ToolCardsContainer = ({ items, className }: { items: NonNullable<To
 	let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
 	return (
-		<div className={cn("flex flex-col py-5", className)}>
+		<div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-5", className)}>
 			{items.map((item, idx) => (
 				<div key={idx} className="relative group  block p-2 h-full w-full" onMouseEnter={() => setHoveredIndex(idx)} onMouseLeave={() => setHoveredIndex(null)}>
 					<AnimatePresence>
