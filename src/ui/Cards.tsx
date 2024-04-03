@@ -62,7 +62,7 @@ export const Cards = ({ items, className, type }: { items: Categories; className
 			) : (
 				<div className="flex flex-col justify-center items-center mt-24">
 					<Image className="mb-10" src="/not-found.svg" width={300} height={200} alt="Not found" />
-					<p>No results, try something else...</p>
+					<h1 className={`text-2xl font-bold bg-clip-text text-transparent leading-[3rem] ${gradientClassName}`}>No results, try something else...</h1>
 				</div>
 			)}
 		</>
