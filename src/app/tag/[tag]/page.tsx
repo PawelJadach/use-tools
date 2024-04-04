@@ -1,8 +1,6 @@
 import { getClient } from "@/lib/apollo";
 import { getTagToolsQuery } from "@/queries/tags";
-import { ToolCardsContainer } from "@/ui/Cards";
-import Header from "@/ui/Header";
-import { cn } from "@/utils/cn";
+import Tools from "@/ui/pages/Tools";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 
@@ -24,16 +22,11 @@ const getToolsByTag = cache(async (tag: string) => {
 		return notFound();
 	}
 
-	return data.tags[0].tools;
+	return data.tags[0].tools.filter((tool) => tool?.status === "Ready");
 });
 
 export default async function Tag({ params }: TagProps) {
 	const tools = await getToolsByTag(params.tag);
 
-	return (
-		<div className="w-full max-w-5xl mx-auto gap-4 grow">
-			<Header>{params.tag}.</Header>
-			{tools.length > 0 ? <ToolCardsContainer items={tools} /> : <p>Tools not found</p>}
-		</div>
-	);
+	return <Tools header={`${params.tag}.`} items={tools} />;
 }

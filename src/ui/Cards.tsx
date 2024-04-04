@@ -35,7 +35,7 @@ export const Cards = ({ items, className, type }: { items: Categories; className
 			{filteredItems.length > 0 ? (
 				<div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-5", className)}>
 					{filteredItems.map((item, idx) => (
-						<Link href={`${getUrlByType(type)}${item?.slug}`} key={"/" + item?.slug} className="relative group  block p-2 h-full w-full" onMouseEnter={() => setHoveredIndex(idx)} onMouseLeave={() => setHoveredIndex(null)}>
+						<Link href={`${getUrlByType(type)}${item?.slug}`} key={"/" + item?.slug} className="relative group block p-2 h-full w-full" onMouseEnter={() => setHoveredIndex(idx)} onMouseLeave={() => setHoveredIndex(null)}>
 							<AnimatePresence>
 								{hoveredIndex === idx && (
 									<motion.span
@@ -71,7 +71,7 @@ export const Cards = ({ items, className, type }: { items: Categories; className
 
 export const Card = ({ className, children }: { className?: string; children: React.ReactNode }) => {
 	return (
-		<div className={cn("rounded-2xl h-full w-full p-3 overflow-hidden bg-black border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 relative z-20", className)}>
+		<div className={cn("rounded-2xl h-full w-full p-3 bg-dark overflow-hidden border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 relative z-20", className)}>
 			<div className="relative z-50">
 				<div className="p-4">{children}</div>
 			</div>
@@ -87,8 +87,8 @@ export const CardDescription = ({ className, children }: { className?: string; c
 
 export const CardImage = ({ className, src }: { className?: string; src: string }) => {
 	return (
-		<div className="w-15 h-15 flex justify-center items-center p-5  rounded-sm relative">
-			<Image layout="fill" objectFit="contain" alt="Test alt" src={src} className={cn(className)} />
+		<div className="w-15 h-15 flex justify-center items-center p-5 rounded-sm relative">
+			<Image sizes="100%" fill alt="Test alt" src={src} className={cn(className)} />
 		</div>
 	);
 };

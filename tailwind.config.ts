@@ -19,6 +19,9 @@ const config: Config = {
 					},
 				},
 			},
+			colors: {
+				dark: "#1D232A",
+			},
 		},
 	},
 	plugins: [require("daisyui")],
