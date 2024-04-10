@@ -16,7 +16,7 @@ const getCategories = cache(async () => {
 	return data.categories;
 });
 
-export default async function Categories() {
+export default async function CategoriesPage() {
 	const categories = await getCategories();
 
 	return <List items={categories} type="category" />;

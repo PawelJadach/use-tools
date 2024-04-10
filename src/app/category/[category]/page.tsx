@@ -25,7 +25,7 @@ const getToolsByCategory = cache(async (category: string) => {
 	return data.categories[0].tools.filter((tool) => tool?.status === "Ready");
 });
 
-export default async function Category({ params }: CategoryProps) {
+export default async function CategoryPage({ params }: CategoryProps) {
 	const tools = await getToolsByCategory(params.category);
 
 	return <Tools header={`${params.category}.`} items={tools} />;

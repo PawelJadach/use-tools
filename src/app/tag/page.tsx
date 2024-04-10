@@ -16,7 +16,7 @@ const getTags = cache(async () => {
 	return data.tags;
 });
 
-export default async function Tags() {
+export default async function TagsPage() {
 	const tags = await getTags();
 
 	return <List items={tags} type="tag" />;

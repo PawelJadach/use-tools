@@ -9,7 +9,7 @@ import FilterInput from "./FilterInput";
 import Image from "next/image";
 import { classNameType } from "@/utils/classNameType";
 
-export type Type = "category" | "tag";
+export type Type = "category" | "tag" | "tool";
 
 type TypeCardsProps = {
 	items: Categories;

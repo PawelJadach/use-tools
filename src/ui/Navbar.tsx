@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import NavLink from "./NavLink";
 import { maxWidthClass } from "@/config/constants";
-import AddNew from "./AddNew";
+import SubmitNew from "./SubmitNew";
 
 export default function Navbar() {
 	return (
@@ -15,7 +15,7 @@ export default function Navbar() {
 				<ul className="flex gap-4 items-center">
 					<NavLink href="/category" label="categories" />
 					<NavLink href="/tag" label="tags" />
-					<AddNew />
+					<SubmitNew />
 				</ul>
 			</div>
 		</div>

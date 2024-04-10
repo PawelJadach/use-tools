@@ -25,7 +25,7 @@ const getToolsByTag = cache(async (tag: string) => {
 	return data.tags[0].tools.filter((tool) => tool?.status === "Ready");
 });
 
-export default async function Tag({ params }: TagProps) {
+export default async function TagPage({ params }: TagProps) {
 	const tools = await getToolsByTag(params.tag);
 
 	return <Tools header={`${params.tag}.`} items={tools} />;
