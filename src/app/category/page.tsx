@@ -19,5 +19,5 @@ const getCategories = cache(async () => {
 export default async function Categories() {
 	const categories = await getCategories();
 
-	return <List items={categories} type="Categories" />;
+	return <List items={categories} type="category" />;
 }

@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/utils/cn";
+import { classNameType } from "@/utils/classNameType";
 
 type ButtonProps = {
 	href?: string;
@@ -10,7 +11,7 @@ type ButtonProps = {
 	children: ReactNode;
 	isActive?: boolean;
 	filled?: boolean;
-	className?: string;
+	className?: classNameType;
 };
 
 export const Button = ({ href, children, onClick, isActive = false, filled = false, className }: ButtonProps) => {
