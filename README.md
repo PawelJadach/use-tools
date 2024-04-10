@@ -18,9 +18,11 @@ The project was created to collect tools and resources that help developers, des
 - [ ] tool page
 - [ ] more analytics
 - [ ] dark / light mode
-- [ ] favourite tools
+- [ ] favourite tools (cookies or localStorage) -> authorization
 - [ ] add new tool form
 - [ ] footer and navbar improvement
+- [ ] sitemap
+- [ ] open graph images
 
 ## Tech Stack
 
