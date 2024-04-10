@@ -15,9 +15,9 @@ type ButtonProps = {
 };
 
 export const Button = ({ href, children, onClick, isActive = false, filled = false, className }: ButtonProps) => {
-	const classes = `text-slate-300 hover:text-slate-200 hover:bg-gradient-to-b hover:from-emerald-500 hover:to-emerald-800 hover:bg-opacity-50 text-md transition-colors px-2.5 py-0.5 rounded-md relative`;
+	const classes = `text-slate-300 hover:text-slate-200 hover:bg-emerald-500 text-md transition-colors px-2.5 py-1 rounded-md relative`;
 
-	const activeClassName = isActive || filled ? "text-slate-200 bg-gradient-to-b from-emerald-500 to-emerald-800 bg-opacity-50" : "";
+	const activeClassName = isActive || filled ? "text-slate-200 bg-emerald-500" : "";
 
 	const renderButton = () => {
 		return (

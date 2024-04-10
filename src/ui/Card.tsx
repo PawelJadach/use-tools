@@ -1,5 +1,4 @@
 "use client";
-import { gradientClassName } from "@/config/constants";
 import { classNameType } from "@/utils/classNameType";
 import { cn } from "@/utils/cn";
 import { AnimatePresence, motion } from "framer-motion";
@@ -50,7 +49,7 @@ export const CardAnimation = ({ hoveredIndex, index }: CardAnimationProps) => {
 		<AnimatePresence>
 			{hoveredIndex === index && (
 				<motion.span
-					className={cn("absolute inset-0 h-full w-full block rounded-3xl", gradientClassName)}
+					className="absolute inset-0 h-full w-full block rounded-3xl text-emerald-500"
 					layoutId="hoverBackground"
 					initial={{ opacity: 0 }}
 					animate={{

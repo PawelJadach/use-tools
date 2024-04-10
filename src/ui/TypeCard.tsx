@@ -1,5 +1,4 @@
 "use client";
-import { gradientClassName } from "@/config/constants";
 import { Categories } from "@/queries/categories";
 import { cn } from "@/utils/cn";
 import Link from "next/link";
@@ -55,7 +54,7 @@ export const TypeCards = ({ items, className, type }: TypeCardsProps) => {
 			) : (
 				<div className="flex flex-col justify-center items-center mt-24">
 					<Image className="mb-10" src="/not-found.svg" width={300} height={200} alt="Not found" />
-					<h1 className={`text-2xl font-bold bg-clip-text text-transparent leading-[3rem] ${gradientClassName}`}>No results, try something else...</h1>
+					<h1 className="text-2xl font-bold bg-clip-text text-transparent leading-[3rem] text-emerald-500">No results, try something else...</h1>
 				</div>
 			)}
 		</>
