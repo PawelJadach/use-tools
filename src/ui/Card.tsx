@@ -49,7 +49,7 @@ export const CardAnimation = ({ hoveredIndex, index }: CardAnimationProps) => {
 		<AnimatePresence>
 			{hoveredIndex === index && (
 				<motion.span
-					className="absolute inset-0 h-full w-full block rounded-3xl text-emerald-500"
+					className="absolute inset-0 h-full w-full block rounded-3xl bg-emerald-500"
 					layoutId="hoverBackground"
 					initial={{ opacity: 0 }}
 					animate={{
