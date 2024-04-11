@@ -9,7 +9,7 @@ export default function Navbar() {
 	return (
 		<div className={`py-6 px-4 w-full mx-auto flex justify-between ${maxWidthClass}`}>
 			<Link href="/">
-				<Image className="transition-all duration-125 transform hover:scale-125" alt="Use tools logo" src="/logo.svg" width={40} height={40} />
+				<Image className="transition-all duration-125 transform hover:scale-125" alt="Use tools logo" src="/logo.png" width={40} height={40} />
 			</Link>
 			<div>
 				<ul className="flex gap-4 items-center">
