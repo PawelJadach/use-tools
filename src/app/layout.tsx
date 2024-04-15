@@ -6,6 +6,7 @@ import Footer from "@/ui/Footer";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { cn } from "@/utils/cn";
+import NextTopLoader from "nextjs-toploader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({
 				<link rel="manifest" href="/site.webmanifest" />
 			</head>
 			<body className={cn(inter.className, "min-h-screen flex flex-col justify-between items-stretch")}>
+				<NextTopLoader color="#10B981" />
 				<Navbar />
 				{children}
 				<Footer />
