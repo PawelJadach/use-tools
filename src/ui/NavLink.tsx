@@ -6,15 +6,16 @@ import { usePathname } from "next/navigation";
 type NavLinkProps = {
 	href: string;
 	label: string;
+	className?: string;
 };
 
-export default function NavLink({ href, label }: NavLinkProps) {
+export default function NavLink({ href, label, className }: NavLinkProps) {
 	const pathname = usePathname();
 	const isActive = href === pathname;
 
 	return (
 		<li>
-			<Button isActive={isActive} href={href}>
+			<Button className={className} isActive={isActive} href={href}>
 				{label}
 			</Button>
 		</li>

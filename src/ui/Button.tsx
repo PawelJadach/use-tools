@@ -15,7 +15,7 @@ type ButtonProps = {
 };
 
 export const Button = ({ href, children, onClick, isActive = false, filled = false, className }: ButtonProps) => {
-	const classes = `text-slate-300 hover:text-slate-200 hover:bg-emerald-500 text-md transition-colors px-2.5 py-1 rounded-md relative`;
+	const classes = `block text-slate-300 hover:text-slate-200 hover:bg-emerald-500 text-md transition-colors px-2.5 py-1 rounded-md relative`;
 
 	const activeClassName = isActive || filled ? "text-slate-200 bg-emerald-500" : "";
 

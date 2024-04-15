@@ -28,7 +28,7 @@ export default function RootLayout({
 				<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 				<link rel="manifest" href="/site.webmanifest" />
 			</head>
-			<body className={cn(inter.className, "min-h-screen flex flex-col justify-between items-stretch")}>
+			<body className={cn(inter.className, "min-h-screen flex flex-col justify-between items-stretch p-4")}>
 				<NextTopLoader color="#10B981" />
 				<Navbar />
 				{children}

@@ -28,8 +28,10 @@ export const CardDescription = ({ className, children }: CardProps) => {
 
 export const CardImage = ({ className, src }: CardImageProps) => {
 	return (
-		<div className="w-15 h-15 flex justify-center items-center p-5 rounded-sm relative">
-			<Image sizes="100%" fill alt="Test alt" src={src} className={cn(className)} />
+		<div className="border border-transparent dark:border-white/[0.2] rounded-lg p-0.5">
+			<div className="w-15 h-15 flex justify-center items-center p-3 relative rounded-lg overflow-hidden">
+				<Image sizes="100%" fill alt="Test alt" src={src} className={cn(className)} />
+			</div>
 		</div>
 	);
 };
@@ -37,8 +39,8 @@ export const CardImage = ({ className, src }: CardImageProps) => {
 export const Card = ({ className, children }: CardProps) => {
 	return (
 		<div className={cn("rounded-2xl h-full w-full p-3 bg-dark overflow-hidden border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 relative z-20", className)}>
-			<div className="relative z-50">
-				<div className="p-4">{children}</div>
+			<div className="relative z-50 h-full">
+				<div className="p-4 h-full">{children}</div>
 			</div>
 		</div>
 	);
