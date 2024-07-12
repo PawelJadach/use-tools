@@ -22,31 +22,29 @@ export const ToolCard = ({ item }: ToolCardProps) => {
 
 	return (
 		<>
-			<a href={urlWithRef} target="_blank" rel="noreferrer" className="cursor-pointer group">
-				<Card className="p-2">
-					<div className="flex flex-col gap-4 h-full">
-						<div className="flex items-center gap-4">
-							<CardImage src={iconSrc} />
+			<Card className="p-2">
+				<Link href={urlWithRef} target="_blank" rel="noreferrer" className="cursor-pointer group">
+					<span className="flex flex-col gap-4 h-full">
+						<span className="flex items-center gap-4">
+							<CardImage src={iconSrc} alt={`${item?.name} logo`} />
 							<CardTitle className="mt-1">{item?.name}</CardTitle>
 							{category && (
 								<Link className="transition-all group-hover:text-emerald-200 ml-auto text-xs text-slate-400 font-light lowercase" key={category?.slug} href={`/category/${category?.slug}`}>
 									{category.name}
 								</Link>
 							)}
-						</div>
-						<div>
-							<CardDescription className="mt-1">{item?.description}</CardDescription>
-						</div>
-						<div className="flex justify-start items-start gap-2 flex-wrap mt-auto">
+						</span>
+						<CardDescription className="mt-1">{item?.description}</CardDescription>
+						<p className="flex justify-start items-start gap-2 flex-wrap mt-auto">
 							{item?.tag?.map((tag) => (
 								<Link className="transition-all text-xs text-slate-400 group-hover:text-slate-200 font-light lowercase" key={tag?.slug} href={`/tag/${tag?.slug}`}>
 									#{tag?.slug}
 								</Link>
 							))}
-						</div>
-					</div>
-				</Card>
-			</a>
+						</p>
+					</span>
+				</Link>
+			</Card>
 		</>
 	);
 };
